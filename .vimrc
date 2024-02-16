@@ -57,7 +57,7 @@ let g:ale_ruby_rubocop_executable = 'bundle'
 let g:ale_ruby_rubocop_options = '-c .rubocop.yml'
 
 let g:ale_linters = {
-\  'ruby': ['solargraph', 'standardrb', 'rubocop'],
+\  'ruby': ['solargraph', 'rubocop'],
 \}
 
 let g:ale_fixers={
