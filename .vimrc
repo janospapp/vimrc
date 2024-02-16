@@ -20,13 +20,17 @@ syntax on
 filetype plugin indent on
 set nowrap
 set encoding=utf8
+colorscheme nord
 
 nmap <C-n> :NERDTreeToggle<CR>
-nmap <C-j> :NERDTreeFind<CR>
+nmap <leader>j :NERDTreeFind<CR>
 let NERDTreeShowHidden=1
 let NERDTreeWinSize=45
 let NERDTreeChDirMode=2
 
+let g:vimux_ruby_clear_console_on_run = 0
+let g:vimux_ruby_file_relative_paths = 1
+let g:tmux_navigator_disable_when_zoomed = 1
 let g:airline_theme='deus'
 
 " Storing swap files in a separate directory
