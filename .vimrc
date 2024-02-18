@@ -73,3 +73,12 @@ nmap gd :ALEGoToDefinition<CR>
 
 packloadall
 silent! helptags ALL
+
+" Arpeggio mappings
+Arpeggio noremap vi :VimuxInspectRunner<CR>
+Arpeggio noremap vp :VimuxPromptCommand<CR>
+Arpeggio noremap vl :VimuxRunLastCommand<CR>
+Arpeggio noremap ti :RunRubyFocusedTest<CR>
+Arpeggio noremap tc :RunRubyFocusedContext<CR>
+Arpeggio noremap tf :RunAllRubyTests<CR>
+Arpeggio noremap ta :VimuxRunCommand("rspec")<CR>
