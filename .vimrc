@@ -31,6 +31,10 @@ let NERDTreeChDirMode=2
 let g:vimux_ruby_clear_console_on_run = 0
 let g:vimux_ruby_file_relative_paths = 1
 let g:tmux_navigator_disable_when_zoomed = 1
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsEditSplit="vertical"
 let g:airline_theme='deus'
 
 " Storing swap files in a separate directory
@@ -78,7 +82,7 @@ silent! helptags ALL
 Arpeggio noremap vi :VimuxInspectRunner<CR>
 Arpeggio noremap vp :VimuxPromptCommand<CR>
 Arpeggio noremap vl :VimuxRunLastCommand<CR>
-Arpeggio noremap ti :RunRubyFocusedTest<CR>
-Arpeggio noremap tc :RunRubyFocusedContext<CR>
-Arpeggio noremap tf :RunAllRubyTests<CR>
-Arpeggio noremap ta :VimuxRunCommand("rspec")<CR>
+Arpeggio noremap rti :RunRubyFocusedTest<CR>
+Arpeggio noremap rtc :RunRubyFocusedContext<CR>
+Arpeggio noremap rtf :RunAllRubyTests<CR>
+Arpeggio noremap rta :VimuxRunCommand("rspec")<CR>

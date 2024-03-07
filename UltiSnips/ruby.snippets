@@ -1,0 +1,90 @@
+#
+# Global functions
+#
+
+global !p
+
+
+# Utility functions
+#
+def snake_to_camel(name):
+    return ''.join(word.capitalize() for word in name.split('_'))
+
+
+def args_to_variables(arglist):
+    if arglist == None or len(arglist) == 0:
+        return []
+    args = str(arglist).split(',')
+    return list(map(lambda arg: arg.strip().replace(':', ' ').split(' ', 1)[0], args))
+
+def write_instance_vars(arglist, snip):
+    for name in args_to_variables(arglist):
+        if name:
+            snip += '  @{} = {}'.format(name, name)
+        else:
+            snip += ''
+
+def args_to_symbols(arglist, snip):
+    variables = args_to_variables(arglist)
+    if len(variables) > 0:
+        snip.rv = ":" + ", :".join(variables)
+
+def path_to_modules(snip):
+    directories = path.split('/')[:-1] + [snip.basename]
+    if "app" in path:
+        idx = directories.index('app')
+        relevant_dirs = directories[idx + 2:]
+    elif "lib" in path:
+        idx = directories.index('lib')
+        relevant_dirs = directories[idx + 1:]
+    elif "spec" in path:
+        idx = directories.index('spec')
+        relevant_dirs = directories[idx + 2:]
+    else:
+        return [snake_to_camel(directories[-1])]
+
+    return list(map(lambda name: snake_to_camel(name), relevant_dirs))
+
+# Snippet functions
+#
+def write_modules(is_class, snip):
+    names = path_to_modules(snip)
+    for module_name in names[:-1]:
+        snip += "module " + module_name
+        snip.shift()
+    last = "class " if is_class else "module "
+    snip += last + names[-1]
+    snip += '  '
+
+def write_end_keywords(snip):
+    names = path_to_modules(snip)
+    for _ in range(len(names) - 1):
+        snip.shift()
+
+    while snip.indent:
+        snip += "end"
+        snip.unshift()
+    snip += "end"
+endglobal
+
+#
+# Snippets
+#
+snippet defi "def initialize ..." m
+def initialize($1)`!p write_instance_vars(t[1],snip)`$0
+end
+
+private
+
+attr_reader `!p args_to_symbols(t[1],snip)`
+endsnippet
+
+snippet "^class" "create class skeleton based on the current file" r
+# frozen_string_literal: true
+`!p write_modules(True, snip)`$0`!p write_end_keywords(snip)`
+endsnippet
+
+snippet "^mod" "create class skeleton based on the current file" r
+# frozen_string_literal: true
+`!p write_modules(False, snip)`$0`!p write_end_keywords(snip)`
+endsnippet
