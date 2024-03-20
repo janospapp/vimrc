@@ -43,6 +43,7 @@ set dir=~/.vim/swp//
 " Searching files and text
 nmap <C-p> :Files<CR>
 nmap <C-f> :Rg<CR>
+nmap <C-b> :Buffers<CR>
 " Searching for the current word under the cursor
 nmap <leader>f :Rg \b<C-R><C-W>\b<CR>
 
