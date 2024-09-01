@@ -40,6 +40,9 @@ def path_to_modules(snip):
     else:
         return [snake_to_camel(directories[-1])]
 
+    if "concerns" == relevant_dirs[0]:
+        relevant_dirs = relevant_dirs[1:]
+
     return list(map(lambda name: snake_to_camel(name), relevant_dirs))
 
 def match_request_spec_path():

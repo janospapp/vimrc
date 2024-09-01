@@ -87,3 +87,6 @@ Arpeggio noremap rti :RunRubyFocusedTest<CR>
 Arpeggio noremap rtc :RunRubyFocusedContext<CR>
 Arpeggio noremap rtf :RunAllRubyTests<CR>
 Arpeggio noremap rta :VimuxRunCommand("rspec")<CR>
+
+source $HOME/.vim/scripts/rails.vim
+nmap gs :call rails#ToggleSpecFile()<CR>
